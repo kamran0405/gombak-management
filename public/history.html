@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Malaysia's Ahmadiya</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <div class="logo">Tajneed</div>
+    <ul>
+      <li><a href="registery.html">Register</a></li>
+      <li><a href="members.html">Members</a></li>
+      <li><a href="reports.html">All Reports</a></li>
+      <li><a href="history.html">Malaysia's Ahmadiya</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+
+  <div class="container" id="historyContainer">
+  <h2>🕌 Malaysia's Ahmadiya History</h2>
+</div>
+
+<script>
+  const historyData = [
+    {
+      "title": "First Ahmadiya Mosque in Malaysia",
+      "year": "1935",
+      "description": "The first mosque was established in Kuala Lumpur in 1935.",
+      "image": "https://via.placeholder.com/200/00FF00/000000?text=Mosque"
+    },
+    {
+      "title": "Expansion of Halqa",
+      "year": "1950",
+      "description": "New Halqas were established in multiple regions.",
+      "image": "https://via.placeholder.com/200/FFA500/000000?text=Halqa"
+    },
+    {
+      "title": "Community Services",
+      "year": "1975",
+      "description": "Ahmadiya community started social and educational programs.",
+      "image": "https://via.placeholder.com/200/0000FF/FFFFFF?text=Services"
+    }
+  ];
+
+  const container = document.getElementById("historyContainer");
+
+  historyData.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "history-card";
+    card.innerHTML = `
+      <img src="${item.image}" alt="${item.title}">
+      <h3>${item.title} (${item.year})</h3>
+      <p>${item.description}</p>
+    `;
+    container.appendChild(card);
+  });
+</script>
+
+</body>
+</html>

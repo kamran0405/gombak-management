@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register Member</title>
+   <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<nav>
+  <div class="logo">Tajneed</div>
+  <ul>
+    <li><a href="registery.html">Register</a></li>
+    <li><a href="members.html">Members</a></li>
+    <li><a href="reports.html">All reports</a></li>
+    <li><a href="history.html">malaysia's ahamadiya</a></li>
+  </ul>
+</nav>
+
+
+  <div class="container">
+    <h2>📝 Register Member</h2>
+    <form id="registerForm">
+      <!-- form fields same as before -->
+      <label for="name">Name:</label>
+      <input type="text" id="name" required>
+      <label for="tajneed">Tajneed Number:</label>
+      <input type="text" id="tajneed" required>
+      <label>Gender:</label>
+      <div class="radio-group">
+        <label><input type="radio" name="gender" value="Male" required> Male</label>
+        <label><input type="radio" name="gender" value="Female" required> Female</label>
+      </div>
+      <label for="group">Select Group:</label>
+      <select id="group" required>
+        <option value="">--Choose--</option>
+        <option value="Itfal">Itfal</option>
+        <option value="Khudm">Khudm</option>
+        <option value="Ansar">Ansar</option>
+        <option value="Lajna">Lajna</option>
+      </select>
+      <label for="region">Region:</label>
+      <input type="text" id="region" required>
+      <label for="halqa">Halqa:</label>
+      <input type="text" id="halqa" required>
+      <label for="address">Address:</label>
+      <input type="text" id="address">
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone">
+      <label>Chanda Paid:</label>
+      <div class="radio-group">
+        <label><input type="radio" name="chanda" value="Yes" required> Yes</label>
+        <label><input type="radio" name="chanda" value="No" required> No</label>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+
+    <p id="msg"></p>
+    <button onclick="logout()">Logout</button>
+  </div>
+  <nav>
+<a href="viewtagneed.html" ></a>
+  </nav>
+
+  <script>
+    // check login
+    fetch("http://127.0.0.1:5000/api/protected", { credentials: "include" })
+      .then(res => {
+        
+        return res.json();
+      })
+      .then(data => {
+        if (data) console.log("Logged in as:", data.user.email);
+      })
+      .catch(err => console.error("Error:", err));
+
+    // submit registration
+    document.getElementById("registerForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = {
+        name: document.getElementById("name").value,
+        tajneed: document.getElementById("tajneed").value,
+        gender: document.querySelector('input[name="gender"]:checked')?.value || "",
+        group: document.getElementById("group").value,
+        region: document.getElementById("region").value,
+        halqa: document.getElementById("halqa").value,
+        address: document.getElementById("address").value,
+        phone: document.getElementById("phone").value,
+        chanda: document.querySelector('input[name="chanda"]:checked')?.value || ""
+      };
+
+      const res = await fetch("http://127.0.0.1:5000/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(data)
+      });
+
+      const result = await res.json();
+      document.getElementById("msg").innerText = result.message;
+    });
+
+    async function logout() {
+      await fetch("http://127.0.0.1:5000/api/logout", { method: "POST", credentials: "include" });
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

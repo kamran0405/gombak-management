@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tajneed Members</title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <nav>
+  <div class="logo">Tajneed</div>
+  <ul>
+    
+    <li><a href="members.html">Members</a></li>
+    <li><a href="login.html">login</a></li>
+      <li><a href="reports.html">All reports</a></li>
+    <li><a href="history.html">malaysia's ahamadiya</a></li>
+  </ul>
+</nav>
+
+<div class="container" id="membersContainer">
+  <h2>👥 Tajneed Members</h2>
+  <!-- Halqa groups will be dynamically inserted here -->
+</div>
+
+<script>
+async function loadMembers() {
+  try {
+    const res = await fetch("http://127.0.0.1:5000/members"); 
+    if (!res.ok) throw new Error("Failed to fetch members");
+
+    const members = await res.json();
+    const container = document.getElementById("membersContainer");
+
+    // Clear existing content except heading
+    container.querySelectorAll(".halqa-group").forEach(el => el.remove());
+
+    // Group members by halqa_name
+    const grouped = members.reduce((acc, member) => {
+      if (!acc[member.halqa_name]) acc[member.halqa_name] = [];
+      acc[member.halqa_name].push(member);
+      return acc;
+    }, {});
+
+    // Create Halqa cards
+    for (const halqa in grouped) {
+      const groupDiv = document.createElement("div");
+      groupDiv.className = "halqa-group";
+
+      const header = document.createElement("div");
+      header.className = "halqa-header";
+      header.textContent = `Halqa: ${halqa}`;
+      groupDiv.appendChild(header);
+
+      const table = document.createElement("table");
+
+      const thead = document.createElement("thead");
+      thead.innerHTML = `
+        <tr>
+          <th>Name</th>
+          <th>Tajneed</th>
+          <th>Gender</th>
+          <th>Group</th>
+          <th>Region</th>
+          <th>Halqa</th>
+          <th>Phone</th>
+        </tr>
+      `;
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+      grouped[halqa].forEach(m => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${m.name}</td>
+          <td>${m.tajneed_number}</td>
+          <td>${m.gender}</td>
+          <td>${m.group_name}</td>
+          <td>${m.region_name}</td>
+          <td>${m.halqa_name}</td>
+          <td>${m.phone_number || "-"}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      table.appendChild(tbody);
+      groupDiv.appendChild(table);
+      container.appendChild(groupDiv);
+    }
+
+  } catch (err) {
+    console.error(err);
+    alert("Error loading members. Check the server is running on port 5000.");
+  }
+}
+
+// Load members when page loads
+window.addEventListener("DOMContentLoaded", loadMembers);
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Reports</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <div class="logo">Tajneed</div>
+    <ul>
+      <li><a href="registery.html">Register</a></li>
+      <li><a href="members.html">Members</a></li>
+      <li><a href="reports.html">All Reports</a></li>
+      <li><a href="history.html">Malaysia's Ahmadiya</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+<div class="container" id="reportsContainer">
+  <h2>📄 All Reports</h2>
+</div>
+
+<script>
+  const sampleReports = [
+    {
+      "report_id": 1,
+      "title": "Monthly Attendance Report",
+      "description": "Attendance report for September 2025.",
+      "date": "2025-09-15",
+      "image": "https://via.placeholder.com/150"
+    },
+    {
+      "report_id": 2,
+      "title": "Halqa Activities Report",
+      "description": "Summary of Halqa activities in the past month.",
+      "date": "2025-09-12",
+      "image": "https://via.placeholder.com/150/0000FF/FFFFFF?text=Halqa"
+    },
+    {
+      "report_id": 3,
+      "title": "Chanda Collection Report",
+      "description": "Overview of Chanda payments by members.",
+      "date": "2025-09-10",
+      "image": "https://via.placeholder.com/150/FF0000/FFFFFF?text=Chanda"
+    }
+  ];
+
+  const container = document.getElementById("reportsContainer");
+
+  sampleReports.forEach(r => {
+    const card = document.createElement("div");
+    card.className = "report-card";
+    card.innerHTML = `
+      <img src="${r.image}" alt="${r.title}">
+      <h3>${r.title}</h3>
+      <p>${r.description}</p>
+      <p><strong>Date:</strong> ${r.date}</p>
+    `;
+    container.appendChild(card);
+  });
+</script>
+
+</body>
+</html>

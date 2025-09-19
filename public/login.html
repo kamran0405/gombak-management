@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <style>
+    /* ==========================
+   Base Styles
+========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7fb;
+  color: #333;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* ==========================
+   Container
+========================== */
+.container, form {
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* ==========================
+   Headings
+========================== */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+/* ==========================
+   Form Elements
+========================== */
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: 500;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+/* ==========================
+   Buttons
+========================== */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #3498db;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+/* ==========================
+   Message
+========================== */
+#msg {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: 500;
+  color: #e74c3c; /* error color */
+}
+
+/* ==========================
+   Responsive
+========================== */
+@media screen and (max-width: 500px) {
+  .container, form {
+    padding: 20px;
+  }
+
+  input[type="email"], input[type="password"] {
+    padding: 10px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+   </style>
+  <meta charset="UTF-8">
+  <title>Login</title>
+</head>
+<body>
+  <h2>Login</h2>
+  <form id="loginForm">
+    <label>Email:</label>
+    <input type="email" id="email" required>
+    <label>Password:</label>
+    <input type="password" id="password" required>
+    <button type="submit">Login</button>
+  </form>
+  <p id="msg"></p>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = {
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value
+      };
+
+      const res = await fetch("http://127.0.0.1:5000/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(data)
+      });
+
+      const result = await res.json();
+      document.getElementById("msg").innerText = result.message;
+
+      if (res.ok) window.location.href = "registery.html";
+    });
+  </script>
+</body>
+</html>

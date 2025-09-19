@@ -1,0 +1,340 @@
+/* ==========================
+   Base Styles
+========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f2f2f2;
+  color: #222;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px 10px;
+}
+
+/* ==========================
+   Navigation
+========================== */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1a1a1a;
+  padding: 15px 30px;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 12px 12px 0 0;
+}
+
+nav .logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 15px;
+}
+
+nav ul li a {
+  color: #ccc;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+
+nav ul li a:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+/* ==========================
+   Container
+========================== */
+.container {
+  max-width: 600px;
+  width: 100%;
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* ==========================
+   Headings
+========================== */
+h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #111;
+}
+
+/* ==========================
+   Form Styles
+========================== */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin: 10px 0 5px;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="tel"],
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-size: 15px;
+  background-color: #f9f9f9;
+  color: #222;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #555;
+}
+
+/* ==========================
+   Radio Groups
+========================== */
+.radio-group {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.radio-group label {
+  font-weight: normal;
+}
+
+/* ==========================
+   Buttons
+========================== */
+button {
+  padding: 12px;
+  background-color: #222;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+button[onclick="logout()"] {
+  background-color: #b30000;
+}
+
+button[onclick="logout()"]:hover {
+  background-color: #e60000;
+}
+
+/* ==========================
+   Message Paragraph
+========================== */
+#msg {
+  margin-top: 15px;
+  text-align: center;
+  font-weight: 500;
+  color: #b30000;
+}
+
+/* ==========================
+   Responsive
+========================== */
+@media screen and (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  button, input[type="text"], input[type="tel"], select {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .radio-group {
+    gap: 10px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================
+   Base & Body
+========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1a1a1a;
+  color: #f0f0f0;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ==========================
+   Navigation
+========================== */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #111;
+}
+
+nav .logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+nav ul li a {
+  color: #ccc;
+  text-decoration: none;
+  padding: 6px 12px;
+  transition: 0.2s;
+}
+
+nav ul li a:hover {
+  color: #fff;
+  background-color: #333;
+  border-radius: 4px;
+}
+
+/* ==========================
+   Container
+========================== */
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #222;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+/* ==========================
+   Halqa Group
+========================== */
+.halqa-group {
+  margin-bottom: 25px;
+  border: 1px solid #444;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #2b2b2b;
+}
+
+.halqa-header {
+  background-color: #111;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 15px;
+  text-align: center;
+  font-size: 18px;
+}
+
+/* ==========================
+   Tables
+========================== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  background-color: #333;
+  color: #fff;
+  font-weight: 500;
+  padding: 10px;
+  text-align: left;
+}
+
+tbody td {
+  padding: 10px;
+  border-bottom: 1px solid #444;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #2f2f2f;
+}
+
+tbody tr:hover {
+  background-color: #444;
+}
+
+/* ==========================
+   Responsive
+========================== */
+@media screen and (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 20px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  thead th, tbody td {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
